@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="86776c22-2e2a-4c99-8643-b684a508ffbe" name="Default Changelist" comment="test">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ScenarioDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ScenarioDefinition.java" afterDir="false" />
-    </list>
+    <list default="true" id="86776c22-2e2a-4c99-8643-b684a508ffbe" name="Default Changelist" comment="test" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="119">
+              <caret line="37" column="21" lean-forward="true" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -80,7 +77,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="949" />
     <option name="width" value="980" />
     <option name="height" value="1031" />
@@ -154,6 +151,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552175519703" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/selenium-java-3.141.59/client-combined-3.141.59.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -198,10 +197,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="633" y="0" width="653" height="687" extended-state="1" />
+    <frame x="633" y="0" width="653" height="687" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.05059022" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.5025295" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -257,8 +256,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="119">
+          <caret line="37" column="21" lean-forward="true" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -314,12 +313,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>ECSE428_AB</last-edited>
+          <last-edited>ecse428</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -327,6 +325,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>Maven: info.cukes:cucumber-html:0.2.6</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
