@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="86776c22-2e2a-4c99-8643-b684a508ffbe" name="Default Changelist" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chromedriver.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/medium_colorado.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/RunCucumberTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RunCucumberTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ScenarioDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ScenarioDefinition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/send_email.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/send_email.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/RunCucumberTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/RunCucumberTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ScenarioDefinition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ScenarioDefinition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/send_email.feature" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/send_email.feature" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="315">
+              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -52,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/ScenarioDefinition.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="212" column="16" selection-start-line="212" selection-start-column="16" selection-end-line="212" selection-end-column="16" />
+            <state relative-caret-position="485">
+              <caret line="309" lean-forward="true" selection-start-line="309" selection-end-line="309" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,6 +80,13 @@
       <find>login</find>
       <find>logi</find>
       <find>sleep</find>
+      <find>upload</find>
+      <find>iAddMultipleAtt</find>
+      <find>message</find>
+      <find>i enter a recip</find>
+      <find>quebec</find>
+      <find>extended delay</find>
+      <find>catch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,8 +184,8 @@
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/selenium-java-3.141.59/client-combined-3.141.59.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunAnythingCache">
@@ -227,39 +236,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RunCucumberTest - 2019.03.09 at 23h 57m 47s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 15h 18m 50s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.09 at 23h 58m 27s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 01m 25s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.09 at 23h 58m 55s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 06m 15s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.09 at 23h 59m 56s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 16m 13s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.10 at 00h 02m 06s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 17m 11s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.10 at 00h 05m 25s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 19m 02s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.10 at 00h 19m 39s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 20m 39s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.10 at 00h 21m 37s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 23m 38s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.10 at 00h 37m 26s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 24m 13s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="RunCucumberTest - 2019.03.10 at 00h 38m 22s.xml">
+    <history-entry file="RunCucumberTest - 2019.03.10 at 16h 25m 55s.xml">
       <configuration name="RunCucumberTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18053000" />
+    <option name="totallyTimeSpent" value="32064000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -272,17 +281,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.01831502" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" sideWeight="0.44993895" weight="0.32959184" />
+      <window_info anchor="bottom" id="Messages" sideWeight="0.44993895" weight="0.34489796" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.9181929" visible="true" weight="0.35714287" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.9181929" visible="true" weight="0.26632652" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -331,15 +339,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="315">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ScenarioDefinition.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="212" column="16" selection-start-line="212" selection-start-column="16" selection-end-line="212" selection-end-column="16" />
+        <state relative-caret-position="485">
+          <caret line="309" lean-forward="true" selection-start-line="309" selection-end-line="309" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -398,11 +406,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>ecse428</last-edited>
+          <last-edited>ECSE428_AB</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -410,7 +419,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: info.cukes:cucumber-html:0.2.6</last-edited>
+          <last-edited>Maven: com.google.code.findbugs:jsr305:1.3.9</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
