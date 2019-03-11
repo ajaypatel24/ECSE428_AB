@@ -120,7 +120,7 @@ public class ScenarioDefinition {
 
         try {
             System.out.println("Entering recipients, subject and body.");
-            WebElement recipient = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_RECIPIENT)));
+            WebElement recipient = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_RECIPIENT)));
             recipient.sendKeys(EMAIL_RECIPIENTS[firstEmailIndex] + " ");
             recipient = (new WebDriverWait(driver, 15)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_RECIPIENT)));
             recipient.sendKeys(EMAIL_RECIPIENTS[secondEmailIndex]);
@@ -130,7 +130,7 @@ public class ScenarioDefinition {
             WebElement body = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_BODY)));
 
             body.sendKeys(EMAIL_SUBJECT_BODY_FIELD);
-        } catch (ElementNotInteractableException | StaleElementReferenceException e) {
+        } catch (ElementNotInteractableException | StaleElementReferenceException | TimeoutException e) {
             System.out.println("Failed to enter a recipient, subject, or body. It is recommended that you re-run the test.");
 
         }
