@@ -12,7 +12,7 @@ Feature: Sending email with image attachment action
     Scenario: Sending an email with a large image attachment
         Given I am a user on the Gmail page
         And I click the compose button 
-        And I enter a recipient, a subject and the email body
+        And I enter a recipient with a google account, a subject and the email body
         When I press the paperclip icon and select an image whose size is over the maximum limit   
         Then my image will be uploaded to Google Drive and a link to it will be provided in the email
         And I press the send button to send the large attachment 

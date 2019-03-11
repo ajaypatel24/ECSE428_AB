@@ -65,7 +65,7 @@ public class ScenarioDefinition {
     private static final String FIELD_EMAIL_BODY = "Am";
     private static final String FIELD_EMAIL_BODY_WITH_ATTACHMENT = "vI";
 
-
+    private static final String NOTICE_EMAIL_SENDING = "v1";
     private static final String NOTICE_EMAIL_SENT = "aT";
     private static final String NOTICE_UPLOADING_DRIVE = "Kj-JD-K7-K0";
     private static final String NOTICE_DRIVE_ERROR = "Kj-JD-K7-K0";
@@ -87,12 +87,15 @@ public class ScenarioDefinition {
         composeButton.click();
     }
 
+
+    // This is used for all cases except for when there is more than 1 recipient or for a large attachment
     @And("^I enter a recipient, a subject and the email body$")
     public void iInputFields() {
         try {
+            Random random = new Random();
             System.out.println("Entering a recipient, subject and body.");
             WebElement recipient = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_RECIPIENT)));
-            recipient.sendKeys(USER_EMAIL);
+            recipient.sendKeys(EMAIL_RECIPIENTS[random.nextInt(3)]);
             WebElement subject = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_SUBJECT)));
             subject.sendKeys(EMAIL_SUBJECT_BODY_FIELD);
             WebElement body = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_BODY)));
@@ -149,11 +152,11 @@ public class ScenarioDefinition {
 
 
     @Then("^I upload an attachment that is under maximum size limit$")
-    public void checkRegularAttachStatus() {
+    public void iCheckRegularAttachStatus() {
         WebElement bodyAttachment = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_BODY_WITH_ATTACHMENT)));
 
         // the existence of this field automatically confirms that the image is below 25mb
-        if (bodyAttachment == null || bodyAttachment.getText().equals("")) {  // If no string it means attachment wasn't properly added
+        if (bodyAttachment == null || bodyAttachment.getText().equals("")) {
             System.out.println("Image was not successfully uploaded");
         } else {
             System.out.println("Image was attached.");
@@ -162,46 +165,72 @@ public class ScenarioDefinition {
     }
 
     @And("^I press the send button$")
-    public void sendRegularEmail() {
+    public void iSendRegularEmail() {
         System.out.println("Attempting to send email...");
+
         try {
-            new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(By.className(ACTION_SEND_EMAIL))).click();
+            new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.className(ACTION_SEND_EMAIL))).click();
         } catch (TimeoutException e) {
             System.out.println("Server timed out, please re-run the test.");
-        }
 
+        }
     }
 
 
     @Then("^the email will be sent to the recipient and will include a regular attachment$")
-    public void verifyRegularEmail() {
-
-        WebElement emailConfirmation;
+    public void iVerifyRegularEmailSent() {
 
         try {
-            emailConfirmation = (new WebDriverWait(driver, 25)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
-            if (emailConfirmation.getText().equals("Message sent.")) {
-                System.out.println("Regular email sent successfully.");
-            } else {
-                System.out.println("There was an error or extended delay (possible network issues) in sending the email with multiple recipients. If you see this message, the email has likely sent, but was delayed due to the file upload.");
-            }
 
-        } catch (org.openqa.selenium.StaleElementReferenceException | TimeoutException e) {
-            System.out.println("There was an error sending the email. It is recommended that you re-run the test.");
+            WebElement sendingNotice = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENDING)));
+
+            while (sendingNotice.getText().equals("Send: uploading attachments...")) ;
+
+        } catch (WebDriverException e) {
+
         }
 
+        try {
+            WebElement emailConfirmation = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
+            while (emailConfirmation.getText().contains("Message sent.")) ;
+            System.out.println("Email was sent.");
+
+        } catch (WebDriverException e) {
+
+        }
 
     }
 
 
-    // alternate flows
+    /* ------------------ ALTERNATE FLOWS ------------------ */
 
 
-    // sending an image > 25mb
+    // FLOW 1: SENDING AN IMAGE > 25MB //
+
+
+
+    // this was added as sending a large file with google drive to a non gmail user causes a pop up for permissions and we are not covering this scenario
+    // as a result, this cannot be randomized as we only have 1 gmail account
+
+    @And("^I enter a recipient with a google account, a subject and the email body$")
+    public void iInputFieldsForLargeImage() {
+        try {
+            System.out.println("Entering a recipient, subject and body.");
+            WebElement recipient = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_RECIPIENT)));
+            recipient.sendKeys(USER_EMAIL);
+            WebElement subject = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_SUBJECT)));
+            subject.sendKeys(EMAIL_SUBJECT_BODY_FIELD);
+            WebElement body = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(FIELD_EMAIL_BODY)));
+            body.sendKeys(EMAIL_SUBJECT_BODY_FIELD);
+        } catch (ElementNotInteractableException | TimeoutException e) {
+            System.out.println("Failed to enter a recipient, subject, or body. It is recommended that you re-run the test.");
+
+        }
+    }
 
 
     @When("^I press the paperclip icon and select an image whose size is over the maximum limit$")
-    public void addLargeAttachment() {
+    public void iAddLargeAttachment() {
 
         System.out.println("Attempting to upload image...");
 
@@ -213,31 +242,29 @@ public class ScenarioDefinition {
 
 
     @Then("^my image will be uploaded to Google Drive and a link to it will be provided in the email$")
-    public void checkAttachStatus() {
+    public void iCheckAttachStatus() {
         WebElement driveNotice = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_UPLOADING_DRIVE)));
 
-        // TODO
 
         // We cannot time this similar to the normal flow as the upload time can vary due to it being a large file. As a result, this will test whether the google drive upload process occurs
         // the existence of this field automatically confirms that the image is below 25mb
-        if (!driveNotice.isDisplayed()) {  // If no string it means attachment wasn't properly added
+        if (!driveNotice.isDisplayed()) {
             System.out.println("Image was not successfully uploaded");
         }
 
         try {
-            while (driveNotice.isDisplayed()) {
+            while (driveNotice.getText().contains("Attaching File")) {
             }
         } catch (StaleElementReferenceException e) {
-            driveNotice = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_UPLOADING_DRIVE)));
-            while (driveNotice.isDisplayed()) {
-            }
+            System.out.println("Image successfully uploaded");
+
         }
 
 
     }
 
     @And("^I press the send button to send the large attachment$")
-    public void sendEmail() {
+    public void iSendEmail() {
         System.out.println("Attempting to send email...");
 
         try {
@@ -251,26 +278,30 @@ public class ScenarioDefinition {
 
 
     @Then("^the email will be sent to the recipient and will include access to the attachment via Google Drive")
-    public void verifyLargeEmail() {
-
-        WebElement emailConfirmation;
+    public void iVerifyLargeEmail() {
 
         try {
-            emailConfirmation = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
-            if (emailConfirmation.getText().equals("Message sent.")) {
-                System.out.println("Large Email sent successfully.");
-            } else {
-                System.out.println("There was an error or extended delay (possible network issues) in sending the email with multiple recipients. If you see this message, the email has likely sent, but was delayed due to the file upload.");
-            }
-        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
-            System.out.println("There was an error sending the email. It is recommended that you re-run the test.");
 
+            WebElement sendingNotice = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENDING)));
+
+            while (sendingNotice.getText().equals("Send: uploading attachments...")) ;
+
+        } catch (WebDriverException e) {
+
+        }
+
+        try {
+            WebElement emailConfirmation = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
+            while (emailConfirmation.getText().contains("Message sent.")) ;
+            System.out.println("Email was sent.");
+
+        } catch (WebDriverException e) {
         }
 
 
     }
 
-    // sending to multiple recipients
+    // FLOW 2: SENDING TO MULTIPLE RECIPIENTS //
 
     @When("^I press the paperclip icon and select an image to send$")
     public void iAddARegularAttachmentForMultipleRecipients() {
@@ -318,21 +349,29 @@ public class ScenarioDefinition {
     public void myEmailWasSentToMultipleRecipients() {
 
         try {
-            WebElement emailConfirmation = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
-            if (emailConfirmation.getText().equals("Message sent.")) {
-                System.out.println("Multiple recipients email sent successfully.");
-            } else {
-                System.out.println("There was an error or extended delay (possible network issues) in sending the email with multiple recipients. If you see this message, the email has likely sent, but was delayed due to the file upload.");
-            }
-        } catch (StaleElementReferenceException | TimeoutException e) {
-            System.out.println("There was an error sending the email. It is recommended that you re-run the test.");
+
+            WebElement sendingNotice = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENDING)));
+
+            while (sendingNotice.getText().equals("Send: uploading attachments...")) ;
+
+        } catch (WebDriverException e) {
+
+        }
+
+        try {
+            WebElement emailConfirmation = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
+            while (emailConfirmation.getText().contains("Message sent.")) ;
+            System.out.println("Email was sent.");
+
+
+        } catch (WebDriverException e) {
         }
 
 
     }
 
 
-    // sending multiple images
+    // FLOW 3: SENDING MULTIPLE ATTACHMENTS //
 
 
     @When("^I press the paperclip icon and select multiple images$")
@@ -371,35 +410,49 @@ public class ScenarioDefinition {
 
     @And("^I press the send button to send an email with multiple attachments$")
     public void iSendAnEmailWithMultipleAttachments() {
-        new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(By.className(ACTION_SEND_EMAIL))).click();
+        try {
+            new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(By.className(ACTION_SEND_EMAIL))).click();
+        } catch (TimeoutException e) {
+            System.out.println("Server timed out, please re-run the test.");
 
+
+        }
     }
 
 
     @Then("^the email will be sent to the recipient and will include multiple attachments$")
     public void myEmailWithMultipleAttachmentsWasSent() {
 
-        WebElement emailConfirmation;
 
         try {
-            emailConfirmation = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
-            if (emailConfirmation.getText().equals("Message sent.")) {
-                System.out.println("Multiple recipients email sent successfully.");
-            } else {
-                System.out.println("There was an error or extended delay (possible network issues) in sending the email with multiple recipients. If you see this message, the email has likely sent, but was delayed due to the file upload.");
-            }
 
-        } catch (org.openqa.selenium.StaleElementReferenceException | TimeoutException e) {
-            System.out.println("There was an error sending the email. It is recommended that you re-run the test.");
+            WebElement sendingNotice = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENDING)));
+
+            while (sendingNotice.getText().equals("Send: uploading attachments...")) ;
+
+        } catch (WebDriverException e) {
+
         }
 
+        try {
+            WebElement emailConfirmation = (new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.className(NOTICE_EMAIL_SENT)));
+            while (emailConfirmation.getText().contains("Message sent.")) ;
+            System.out.println("Email was sent.");
 
+        } catch (WebDriverException e) {
+
+        }
     }
 
 
-    // error flow
+    // ERROR FLOW //
+
 
     // this case is very specific. the file must be large enough so that the user does not have sufficient drive space.
+
+    // PLEASE NOTE: IN OUR IMPLEMENTATION. THE DRIVE MUST BE AT 14.9GB OF STORAGE (MAKE SURE IT IS BELOW 14.95GB) SO THAT THE FILE IS REJECTED
+
+    // DO NOT FORGET TO EXTRACT THE ZIP FILE WITH THE QC IMAGE
 
 
     @When("^I press the paperclip icon and select a large image when there is not enough available storage on my Google Drive$")
@@ -437,7 +490,7 @@ public class ScenarioDefinition {
             System.out.println("There was an error sending the email. It is recommended that you re-run the test.");
 
         }
-        // goes back to inbox page
+        // goes back to inbox page i.e., resets state
         readLink(URL_INBOX);
 
     }
